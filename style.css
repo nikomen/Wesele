@@ -1,0 +1,407 @@
+:root {
+  --bg: #F6F1E7;
+  --card: #FFFDF8;
+  --ink: #2B2118;
+  --forest: #34402E;
+  --forest-dark: #232B1F;
+  --wood: #8B5A2B;
+  --gold: #B08948;
+  --line: rgba(43, 33, 24, 0.14);
+  --radius: 6px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Work Sans", -apple-system, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 500;
+  margin: 0;
+  color: var(--forest-dark);
+}
+
+.hidden { display: none !important; }
+
+/* ---------- Signature seal ---------- */
+.seal {
+  width: 92px;
+  height: 92px;
+  border: 1.5px solid var(--gold);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--forest-dark);
+  margin: 0 auto 1.5rem;
+  background: var(--card);
+}
+.seal span {
+  font-family: "Work Sans", sans-serif;
+  font-style: normal;
+  font-size: 0.6rem;
+  letter-spacing: 0.08em;
+  color: var(--wood);
+  margin-top: 2px;
+}
+.seal.small { width: 64px; height: 64px; font-size: 0.95rem; margin-bottom: 1rem; }
+
+/* ---------- Password gate ---------- */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: linear-gradient(160deg, var(--forest-dark), var(--forest) 60%, #4a4630);
+}
+.gate-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 2.75rem 2.25rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.35);
+}
+.gate-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.gate-text {
+  font-size: 0.95rem;
+  color: #55493c;
+  margin: 0 0 1.5rem;
+}
+#gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+#gate-password {
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  text-align: center;
+}
+#gate-password:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+.gate-card button {
+  padding: 0.8rem 1rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--forest);
+  color: #fff;
+  font-size: 1rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.gate-card button:hover { background: var(--forest-dark); }
+.gate-error {
+  color: #a3402f;
+  font-size: 0.85rem;
+  margin: 0.9rem 0 0;
+  display: none;
+}
+.gate-error.show { display: block; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  height: 92vh;
+  min-height: 480px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+}
+.hero-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(20,22,14,0.78) 0%, rgba(20,22,14,0.15) 55%, rgba(20,22,14,0.35) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 0 2rem 4rem;
+  width: 100%;
+  text-align: center;
+  color: #fff;
+}
+.hero-eyebrow {
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  margin: 0 0 0.6rem;
+  color: #E7DFC9;
+}
+.hero-names {
+  font-size: clamp(2.6rem, 8vw, 5.2rem);
+  color: #fff;
+  line-height: 1;
+}
+.hero-names .amp {
+  font-style: italic;
+  color: var(--gold);
+  padding: 0 0.15em;
+}
+.hero-date {
+  margin: 1rem 0 0;
+  font-size: 1.1rem;
+  color: #E7DFC9;
+}
+
+/* ---------- Sections ---------- */
+.section {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 5rem 1.5rem;
+}
+.section h2 {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.welcome { text-align: center; }
+.welcome-text {
+  font-size: 1.15rem;
+  color: #40352A;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+/* ---------- Timeline ---------- */
+.timeline-track {
+  display: flex;
+  justify-content: center;
+  gap: 3.5rem;
+  position: relative;
+  padding-top: 1rem;
+}
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 12%;
+  right: 12%;
+  height: 1px;
+  background: var(--line);
+}
+.timeline-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg);
+  padding: 0 1rem;
+}
+.timeline-item::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  order: -1;
+}
+.timeline-time {
+  font-family: "Fraunces", serif;
+  font-size: 1.5rem;
+  color: var(--forest-dark);
+}
+.timeline-label {
+  font-size: 0.92rem;
+  color: #5b5142;
+}
+
+/* ---------- Places ---------- */
+.places {
+  max-width: 980px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+}
+.place {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+.place-reverse .place-media { order: 2; }
+.place-reverse .place-info { order: 1; }
+.place-media img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius);
+  display: block;
+}
+.place-kicker {
+  font-size: 0.85rem;
+  color: var(--wood);
+  margin: 0 0 0.4rem;
+}
+.place-info h3 {
+  font-size: 1.6rem;
+  margin-bottom: 0.6rem;
+}
+.place-address {
+  color: #40352A;
+  margin: 0 0 0.9rem;
+}
+.place-link {
+  color: var(--forest);
+  font-size: 0.92rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 1px;
+}
+.place-link:hover { color: var(--wood); }
+.place-map {
+  margin-top: 1.25rem;
+  border-radius: var(--radius);
+  overflow: hidden;
+  aspect-ratio: 16/10;
+  border: 1px solid var(--line);
+}
+
+/* ---------- RSVP ---------- */
+.rsvp { background: var(--card); border-radius: var(--radius); }
+.rsvp-intro {
+  text-align: center;
+  color: #5b5142;
+  margin-top: -1.5rem;
+  margin-bottom: 2.5rem;
+}
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.field > span, .field legend {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--forest-dark);
+  padding: 0;
+}
+.field em { color: #7a6d5b; font-weight: 400; font-size: 0.85rem; }
+input[type="text"], select, textarea {
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 1rem;
+  background: #fff;
+  color: var(--ink);
+}
+input[type="text"]:focus, select:focus, textarea:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+.radio-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.98rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+.radio input { accent-color: var(--forest); width: 17px; height: 17px; }
+.submit-btn {
+  margin-top: 0.5rem;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--forest);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1.02rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.submit-btn:hover { background: var(--forest-dark); }
+.submit-btn:disabled { opacity: 0.6; cursor: default; }
+.rsvp-status {
+  text-align: center;
+  font-size: 0.92rem;
+  min-height: 1.2em;
+  margin: 0.5rem 0 0;
+}
+.rsvp-status.ok { color: var(--forest); }
+.rsvp-status.err { color: #a3402f; }
+
+/* ---------- Footer ---------- */
+.footer {
+  background: var(--forest-dark);
+  color: #E7DFC9;
+  text-align: center;
+  padding: 4.5rem 1.5rem 3rem;
+}
+.footer .seal { border-color: var(--gold); background: transparent; color: #fff; }
+.footer .seal span { color: var(--gold); }
+.footer p {
+  max-width: 480px;
+  margin: 0 auto;
+  font-size: 1.02rem;
+}
+.footer-signature {
+  margin-top: 1.75rem;
+  font-family: "Fraunces", serif;
+  font-style: italic;
+  color: #fff;
+  font-size: 1.1rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 720px) {
+  .place, .place-reverse .place-media, .place-reverse .place-info {
+    grid-template-columns: 1fr;
+    order: initial;
+  }
+  .place { grid-template-columns: 1fr; }
+  .timeline-track { gap: 2rem; }
+  .section { padding: 3.5rem 1.25rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
