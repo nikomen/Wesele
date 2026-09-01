@@ -106,62 +106,61 @@
 
       <form id="rsvp-form" class="rsvp-form">
 
+        <!-- OSOBA GŁÓWNA -->
+        <div class="guest-block main-guest">
+          <p class="guest-block-label" data-i18n="mainGuestLabel">Twoje dane</p>
+
+          <label class="field">
+            <span data-i18n="labelImie">Imię i nazwisko</span>
+            <input type="text" id="main-imie" required data-i18n-placeholder="placeholderImie" placeholder="np. Dariusz Moroz">
+          </label>
+
+          <fieldset class="field">
+            <legend data-i18n="legendKosciol">Czy będziesz na ceremonii w kościele (13:00)?</legend>
+            <div class="radio-row">
+              <label class="radio"><input type="radio" name="kosciol" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
+              <label class="radio"><input type="radio" name="kosciol" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="field">
+            <legend data-i18n="legendWesele">Czy będziesz na przyjęciu weselnym (14:30)?</legend>
+            <div class="radio-row">
+              <label class="radio"><input type="radio" name="wesele" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
+              <label class="radio"><input type="radio" name="wesele" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
+            </div>
+          </fieldset>
+
+          <label class="field">
+            <span data-i18n="labelDieta">Dieta</span>
+            <select id="main-dieta" required>
+              <option value="" data-i18n="dietaWybierz">Wybierz…</option>
+              <option value="Standardowa" data-i18n="dietaStandardowa">Standardowa</option>
+              <option value="Wegetariańska" data-i18n="dietaWege">Wegetariańska</option>
+              <option value="Wegańska" data-i18n="dietaWegan">Wegańska</option>
+              <option value="Bezglutenowa" data-i18n="dietaGluten">Bezglutenowa</option>
+              <option value="Inna" data-i18n="dietaInna">Inna (napiszcie w uwagach)</option>
+            </select>
+          </label>
+
+          <fieldset class="field">
+            <legend data-i18n="legendNocleg">Nocleg</legend>
+            <div class="radio-row">
+              <label class="radio"><input type="radio" name="main-nocleg" value="Tak" required> <span data-i18n="noclegTak">Tak, poproszę</span></label>
+              <label class="radio"><input type="radio" name="main-nocleg" value="Nie"> <span data-i18n="noclegNie">Nie potrzebuję</span></label>
+              <label class="radio"><input type="radio" name="main-nocleg" value="Nie wiem"> <span data-i18n="noclegNieWiem">Jeszcze nie wiem</span></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <!-- DODATKOWI GOŚCIE -->
+        <div id="guests-container"></div>
+
+        <button type="button" id="add-guest-btn" class="add-guest-btn" data-i18n="addGuestBtn">+ Dodaj osobę towarzyszącą / dziecko</button>
+
         <label class="field">
-          <span data-i18n="labelImie">Imię i nazwisko</span>
-          <input type="text" name="imie" required data-i18n-placeholder="placeholderImie" placeholder="np. Dariusz Moroz">
-        </label>
-
-        <fieldset class="field">
-          <legend data-i18n="legendKosciol">Czy będziesz na ceremonii w kościele (13:00)?</legend>
-          <div class="radio-row">
-            <label class="radio"><input type="radio" name="kosciol" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
-            <label class="radio"><input type="radio" name="kosciol" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="field">
-          <legend data-i18n="legendWesele">Czy będziesz na przyjęciu weselnym (14:30)?</legend>
-          <div class="radio-row">
-            <label class="radio"><input type="radio" name="wesele" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
-            <label class="radio"><input type="radio" name="wesele" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
-          </div>
-        </fieldset>
-
-        <fieldset class="field">
-          <legend data-i18n="legendNocleg">Czy potrzebujecie noclegu?</legend>
-          <div class="radio-row">
-            <label class="radio"><input type="radio" name="nocleg" value="Tak, poproszę" required> <span data-i18n="noclegTak">Tak, poproszę</span></label>
-            <label class="radio"><input type="radio" name="nocleg" value="Nie, mamy własny"> <span data-i18n="noclegNie">Nie, mamy własny</span></label>
-            <label class="radio"><input type="radio" name="nocleg" value="Jeszcze nie wiem"> <span data-i18n="noclegNieWiem">Jeszcze nie wiem</span></label>
-          </div>
-        </fieldset>
-
-        <label class="field">
-          <span data-i18n="labelTowarzyszacy">Czy ktoś Ci towarzyszy?</span>
-          <select id="liczba-towarzyszacych" name="liczba_towarzyszacych">
-            <option value="0" data-i18n="towarzyszacy0">Nie, przyjdę/przyjadę sam/a</option>
-            <option value="1" data-i18n="towarzyszacy1">Tak, 1 osoba</option>
-            <option value="2" data-i18n="towarzyszacy2">Tak, 2 osoby</option>
-          </select>
-        </label>
-
-        <div id="companions-container"></div>
-
-        <label class="field">
-          <span data-i18n="labelDieta">Dieta</span>
-          <select name="dieta" required>
-            <option value="" data-i18n="dietaWybierz">Wybierz…</option>
-            <option value="Standardowa" data-i18n="dietaStandardowa">Standardowa</option>
-            <option value="Wegetariańska" data-i18n="dietaWege">Wegetariańska</option>
-            <option value="Wegańska" data-i18n="dietaWegan">Wegańska</option>
-            <option value="Bezglutenowa" data-i18n="dietaGluten">Bezglutenowa</option>
-            <option value="Inna" data-i18n="dietaInna">Inna (napiszcie w uwagach)</option>
-          </select>
-        </label>
-
-        <label class="field">
-          <span><span data-i18n="labelUwagi">Uwagi</span> <em data-i18n="labelUwagiEm">(alergie, dziecko — cokolwiek chcecie nam przekazać)</em></span>
-          <textarea name="uwagi" rows="3" data-i18n-placeholder="uwagiPlaceholder" placeholder="Opcjonalnie"></textarea>
+          <span><span data-i18n="labelUwagi">Uwagi</span> <em data-i18n="labelUwagiEm">(alergie, specjalne potrzeby — cokolwiek chcecie nam przekazać)</em></span>
+          <textarea id="main-uwagi" rows="3" data-i18n-placeholder="uwagiPlaceholder" placeholder="Opcjonalnie"></textarea>
         </label>
 
         <button type="submit" class="submit-btn" data-i18n="submitBtn">Wyślij potwierdzenie</button>

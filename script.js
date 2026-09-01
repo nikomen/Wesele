@@ -1,24 +1,17 @@
 /* ====================================================================
    1) HASŁO DO STRONY
-   Zmieńcie poniższy tekst na własne hasło (to, które damy gościom).
-   UWAGA: to jest tylko "kurtyna" przed przypadkowymi osobami z linku —
-   każdy, kto zajrzy w kod strony, może je zobaczyć. To NIE jest
-   prawdziwe zabezpieczenie danych, tylko prosty filtr.
    ==================================================================== */
 const SITE_PASSWORD = "NikodemAnna2027";
 
 /* ====================================================================
    2) ADRES WEB APP Z GOOGLE APPS SCRIPT
-   Po wdrożeniu skryptu (patrz README.md) wklejcie tu URL, który
-   dostaniecie z "Wdróż" -> "Nowe wdrożenie" -> "Aplikacja internetowa".
    ==================================================================== */
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwxn9hpwmCHq7uzYI0wEua_OV1hVeHkC-axkCbo2_kLyGTvt22unZ3sPiRh2emCudM/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_cboFIgVaeFmsCwD7ngCxmGyB67dPxdPT1zSqZbnBM2qIX_Q7Uugvm7a1ABBOOuk/exec";
 
 /* ====================================================================
    3) TŁUMACZENIA (PL / EN)
-   Jeśli chcesz zmienić treść w którymś języku, edytuj tekst poniżej.
    ==================================================================== */
-const TRANSLATIONS = {
+const T = {
   pl: {
     gateTitle: "Wesele Nikodema i Anny",
     gateText: "Ta strona jest tylko dla naszych gości. Podajcie hasło, które dostaliście na zaproszeniu.",
@@ -27,7 +20,7 @@ const TRANSLATIONS = {
     gateError: "To hasło nie pasuje — spróbujcie jeszcze raz.",
     heroEyebrow: "Zapraszamy na nasz ślub",
     heroDate: "8 maja 2027 · Chybie & Jaworze",
-    welcomeText: "Kochani, 8 maja 2027 roku powiemy sobie „tak” i chcemy mieć Was wtedy blisko siebie. Na tej stronie znajdziecie wszystko, co potrzebne na ten dzień — gdzie i o której się spotykamy oraz krótki formularz, w którym dacie nam znać, czy możemy na Was liczyć. Nie możemy się doczekać, żeby świętować razem z Wami.",
+    welcomeText: "Kochani, 8 maja 2027 roku powiemy sobie 'tak' i chcemy mie\u0107 Was wtedy blisko siebie. Na tej stronie znajdziecie wszystko, co potrzebne na ten dzie\u0144 \u2014 gdzie i o kt\u00f3rej si\u0119 spotykamy oraz kr\u00f3tki formularz, w kt\u00f3rym dacie nam zna\u0107, czy mo\u017cemy na Was liczy\u0107. Nie mo\u017cemy si\u0119 doczeka\u0107, \u017ceby \u015bwi\u0119towa\u0107 razem z Wami.",
     timelineTitle: "Plan dnia",
     timelineChurch: "Ceremonia w kościele",
     timelineParty: "Przyjęcie weselne",
@@ -38,16 +31,13 @@ const TRANSLATIONS = {
     mapLink: "Otwórz w Mapach Google →",
     rsvpTitle: "Potwierdź obecność",
     rsvpIntro: "Dajcie nam znać do 1 kwietnia 2027 — to bardzo pomoże nam w organizacji.",
+    mainGuestLabel: "Twoje dane",
     labelImie: "Imię i nazwisko",
     placeholderImie: "np. Dariusz Moroz",
     legendKosciol: "Czy będziesz na ceremonii w kościele (13:00)?",
     legendWesele: "Czy będziesz na przyjęciu weselnym (14:30)?",
     radioTak: "Tak, będę",
     radioNie: "Niestety nie",
-    legendNocleg: "Czy potrzebujecie noclegu?",
-    noclegTak: "Tak, poproszę",
-    noclegNie: "Nie, mamy własny",
-    noclegNieWiem: "Jeszcze nie wiem",
     labelDieta: "Dieta",
     dietaWybierz: "Wybierz…",
     dietaStandardowa: "Standardowa",
@@ -55,16 +45,25 @@ const TRANSLATIONS = {
     dietaWegan: "Wegańska",
     dietaGluten: "Bezglutenowa",
     dietaInna: "Inna (napiszcie w uwagach)",
-    labelTowarzyszacy: "Czy ktoś Ci towarzyszy?",
-    towarzyszacy0: "Nie, przyjdę/przyjadę sam/a",
-    towarzyszacy1: "Tak, 1 osoba",
-    towarzyszacy2: "Tak, 2 osoby",
-    companionLegend: "Osoba towarzysząca",
-    companionImie: "Imię i nazwisko",
-    companionImiePlaceholder: "np. Jan Kowalski",
-    companionDieta: "Dieta tej osoby",
+    legendNocleg: "Nocleg",
+    noclegTak: "Tak, poproszę",
+    noclegNie: "Nie potrzebuję",
+    noclegNieWiem: "Jeszcze nie wiem",
+    addGuestBtn: "+ Dodaj osobę towarzyszącą / dziecko",
+    guestLabel: "Osoba",
+    guestRemove: "Usuń",
+    guestImie: "Imię i nazwisko",
+    guestImiePlaceholder: "np. Anna Kowalska",
+    guestKategoria: "Kategoria",
+    katDorosly: "Dorosły",
+    katDziecko: "Dziecko (4–15 lat)",
+    katMaluch: "Maluch (0–3 lata)",
+    guestWiek: "Wiek dziecka",
+    guestWiekPlaceholder: "np. 6",
+    guestDieta: "Dieta",
+    guestNocleg: "Nocleg",
     labelUwagi: "Uwagi",
-    labelUwagiEm: "(alergie, dziecko — cokolwiek chcecie nam przekazać)",
+    labelUwagiEm: "(alergie, specjalne potrzeby — cokolwiek chcecie nam przekazać)",
     uwagiPlaceholder: "Opcjonalnie",
     submitBtn: "Wyślij potwierdzenie",
     footerText: "Wasza obecność to dla nas największy prezent. Jeśli jednak chcielibyście nas czymś obdarować, zamiast kwiatów najbardziej ucieszy nas los na loterię — kto wie, może to właśnie Wy przyniesiecie nam szczęście na nowej drodze. 🍀",
@@ -72,7 +71,8 @@ const TRANSLATIONS = {
     statusNotConnected: "Formularz nie jest jeszcze podłączony do arkusza — zobacz README.md.",
     statusSending: "Wysyłanie…",
     statusOk: "Dziękujemy! Wasza odpowiedź została zapisana. 🎉",
-    statusErr: "Coś poszło nie tak — spróbujcie jeszcze raz lub napiszcie do nas bezpośrednio."
+    statusErr: "Coś poszło nie tak — spróbujcie jeszcze raz lub napiszcie do nas bezpośrednio.",
+    maxGuests: "Można dodać maksymalnie 10 osób."
   },
   en: {
     gateTitle: "Nikodem & Anna's Wedding",
@@ -82,7 +82,7 @@ const TRANSLATIONS = {
     gateError: "That password doesn't match — please try again.",
     heroEyebrow: "You're invited to our wedding",
     heroDate: "May 8, 2027 · Chybie & Jaworze, Poland",
-    welcomeText: "Dear friends and family, on May 8, 2027 we're saying \"I do\" — and we'd love to have you there with us. On this page you'll find everything you need for the day: where and when we're meeting, plus a short form to let us know if we can count on you. We can't wait to celebrate together.",
+    welcomeText: "Dear friends and family, on May 8, 2027 we're saying 'I do' — and we'd love to have you there with us. On this page you'll find everything you need for the day: where and when we're meeting, plus a short form to let us know if we can count on you. We can't wait to celebrate together.",
     timelineTitle: "Schedule",
     timelineChurch: "Church ceremony",
     timelineParty: "Wedding reception",
@@ -93,16 +93,13 @@ const TRANSLATIONS = {
     mapLink: "Open in Google Maps →",
     rsvpTitle: "RSVP",
     rsvpIntro: "Please let us know by April 1, 2027 — it really helps with planning.",
+    mainGuestLabel: "Your details",
     labelImie: "Full name",
     placeholderImie: "e.g. Jane Smith",
     legendKosciol: "Will you attend the church ceremony (1:00 PM)?",
     legendWesele: "Will you attend the reception (2:30 PM)?",
     radioTak: "Yes, I'll be there",
     radioNie: "Sorry, can't make it",
-    legendNocleg: "Do you need accommodation?",
-    noclegTak: "Yes, please",
-    noclegNie: "No, we're sorted",
-    noclegNieWiem: "Not sure yet",
     labelDieta: "Dietary needs",
     dietaWybierz: "Choose…",
     dietaStandardowa: "Standard",
@@ -110,16 +107,25 @@ const TRANSLATIONS = {
     dietaWegan: "Vegan",
     dietaGluten: "Gluten-free",
     dietaInna: "Other (tell us in the notes)",
-    labelTowarzyszacy: "Is anyone joining you?",
-    towarzyszacy0: "No, just me",
-    towarzyszacy1: "Yes, 1 person",
-    towarzyszacy2: "Yes, 2 people",
-    companionLegend: "Guest",
-    companionImie: "Full name",
-    companionImiePlaceholder: "e.g. John Smith",
-    companionDieta: "Their dietary needs",
+    legendNocleg: "Accommodation",
+    noclegTak: "Yes, please",
+    noclegNie: "No, I'm sorted",
+    noclegNieWiem: "Not sure yet",
+    addGuestBtn: "+ Add a guest / child",
+    guestLabel: "Guest",
+    guestRemove: "Remove",
+    guestImie: "Full name",
+    guestImiePlaceholder: "e.g. John Smith",
+    guestKategoria: "Category",
+    katDorosly: "Adult",
+    katDziecko: "Child (4–15 yrs)",
+    katMaluch: "Toddler (0–3 yrs)",
+    guestWiek: "Child's age",
+    guestWiekPlaceholder: "e.g. 6",
+    guestDieta: "Dietary needs",
+    guestNocleg: "Accommodation",
     labelUwagi: "Notes",
-    labelUwagiEm: "(allergies, kids, anything else we should know)",
+    labelUwagiEm: "(allergies, special needs — anything else we should know)",
     uwagiPlaceholder: "Optional",
     submitBtn: "Send RSVP",
     footerText: "Your presence is the only gift we need. If you'd still like to give us something, instead of flowers we'd love a lottery ticket — who knows, maybe you'll bring us luck on this new road. 🍀",
@@ -127,128 +133,264 @@ const TRANSLATIONS = {
     statusNotConnected: "The form isn't connected to the spreadsheet yet — see README.md.",
     statusSending: "Sending…",
     statusOk: "Thank you! Your response has been saved. 🎉",
-    statusErr: "Something went wrong — please try again or contact us directly."
+    statusErr: "Something went wrong — please try again or contact us directly.",
+    maxGuests: "You can add up to 10 people."
   }
 };
 
-let currentLang = localStorage.getItem("wesele_lang") || "pl";
+let lang = localStorage.getItem("wesele_lang") || "pl";
 
 function applyTranslations() {
-  const dict = TRANSLATIONS[currentLang];
+  var d = T[lang];
   document.querySelectorAll("[data-i18n]").forEach(function (el) {
-    const key = el.getAttribute("data-i18n");
-    if (dict[key] !== undefined) el.textContent = dict[key];
+    var k = el.getAttribute("data-i18n");
+    if (d[k] !== undefined) el.textContent = d[k];
   });
   document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
-    const key = el.getAttribute("data-i18n-placeholder");
-    if (dict[key] !== undefined) el.setAttribute("placeholder", dict[key]);
+    var k = el.getAttribute("data-i18n-placeholder");
+    if (d[k] !== undefined) el.setAttribute("placeholder", d[k]);
   });
-  document.documentElement.lang = currentLang;
-  document.getElementById("lang-toggle").textContent = currentLang === "pl" ? "EN" : "PL";
-  if (typeof renderCompanionFields === "function") renderCompanionFields();
+  document.documentElement.lang = lang;
+  document.getElementById("lang-toggle").textContent = lang === "pl" ? "EN" : "PL";
+  renderAllGuests();
 }
 
 document.getElementById("lang-toggle").addEventListener("click", function () {
-  currentLang = currentLang === "pl" ? "en" : "pl";
-  localStorage.setItem("wesele_lang", currentLang);
+  lang = lang === "pl" ? "en" : "pl";
+  localStorage.setItem("wesele_lang", lang);
   applyTranslations();
 });
 
-const companionsSelect = document.getElementById("liczba-towarzyszacych");
-const companionsContainer = document.getElementById("companions-container");
-const DIET_OPTIONS = ["Standardowa", "Wegetariańska", "Wegańska", "Bezglutenowa", "Inna"];
-const DIET_KEYS = ["dietaStandardowa", "dietaWege", "dietaWegan", "dietaGluten", "dietaInna"];
+/* ================================================================
+   DYNAMICZNE POLA — DODATKOWI GOŚCIE (do 10)
+   ================================================================ */
+var guestCount = 0;
+var MAX_GUESTS = 10;
+var guestsData = []; // przechowuje {id, kategoria} żeby odtwarzać pola
 
-function renderCompanionFields() {
-  const count = parseInt(companionsSelect.value, 10) || 0;
-  const dict = TRANSLATIONS[currentLang];
-  companionsContainer.innerHTML = "";
-  for (let i = 1; i <= count; i++) {
-    const fieldset = document.createElement("fieldset");
-    fieldset.className = "field companion-block";
+var guestsContainer = document.getElementById("guests-container");
+var addBtn = document.getElementById("add-guest-btn");
 
-    const legend = document.createElement("legend");
-    legend.textContent = dict.companionLegend + " " + i;
-    fieldset.appendChild(legend);
-
-    const nameLabel = document.createElement("label");
-    nameLabel.className = "field";
-    const nameSpan = document.createElement("span");
-    nameSpan.textContent = dict.companionImie;
-    const nameInput = document.createElement("input");
-    nameInput.type = "text";
-    nameInput.name = "companion" + i + "_imie";
-    nameInput.required = true;
-    nameInput.placeholder = dict.companionImiePlaceholder;
-    nameLabel.appendChild(nameSpan);
-    nameLabel.appendChild(nameInput);
-
-    const dietLabel = document.createElement("label");
-    dietLabel.className = "field";
-    const dietSpan = document.createElement("span");
-    dietSpan.textContent = dict.companionDieta;
-    const dietSelect = document.createElement("select");
-    dietSelect.name = "companion" + i + "_dieta";
-    dietSelect.required = true;
-    const emptyOpt = document.createElement("option");
-    emptyOpt.value = "";
-    emptyOpt.textContent = dict.dietaWybierz;
-    dietSelect.appendChild(emptyOpt);
-    DIET_OPTIONS.forEach(function (value, idx) {
-      const opt = document.createElement("option");
-      opt.value = value;
-      opt.textContent = dict[DIET_KEYS[idx]];
-      dietSelect.appendChild(opt);
-    });
-    dietLabel.appendChild(dietSpan);
-    dietLabel.appendChild(dietSelect);
-
-    fieldset.appendChild(nameLabel);
-    fieldset.appendChild(dietLabel);
-    companionsContainer.appendChild(fieldset);
+addBtn.addEventListener("click", function () {
+  if (guestCount >= MAX_GUESTS) {
+    alert(T[lang].maxGuests);
+    return;
   }
+  guestCount++;
+  guestsData.push({ id: guestCount, kategoria: "dorosly" });
+  renderAllGuests();
+});
+
+function renderAllGuests() {
+  // Zachowaj wartości pól przed przerysowaniem
+  var savedValues = {};
+  guestsData.forEach(function (g) {
+    var prefix = "g" + g.id + "_";
+    var nameEl = document.querySelector('[name="' + prefix + 'imie"]');
+    var katEl = document.querySelector('[name="' + prefix + 'kategoria"]');
+    var wiekEl = document.querySelector('[name="' + prefix + 'wiek"]');
+    var dietEl = document.querySelector('[name="' + prefix + 'dieta"]');
+    var noclegRadios = document.querySelectorAll('[name="' + prefix + 'nocleg"]');
+    savedValues[g.id] = {
+      imie: nameEl ? nameEl.value : "",
+      kategoria: katEl ? katEl.value : g.kategoria,
+      wiek: wiekEl ? wiekEl.value : "",
+      dieta: dietEl ? dietEl.value : "",
+      nocleg: ""
+    };
+    noclegRadios.forEach(function (r) { if (r.checked) savedValues[g.id].nocleg = r.value; });
+    g.kategoria = savedValues[g.id].kategoria;
+  });
+
+  guestsContainer.innerHTML = "";
+  var d = T[lang];
+
+  guestsData.forEach(function (g, idx) {
+    var sv = savedValues[g.id] || {};
+    var prefix = "g" + g.id + "_";
+    var isMaluch = g.kategoria === "maluch";
+    var isDziecko = g.kategoria === "dziecko" || isMaluch;
+
+    var block = document.createElement("div");
+    block.className = "guest-block extra-guest";
+
+    // Header z numerem i przyciskiem usuwania
+    var header = document.createElement("div");
+    header.className = "guest-block-header";
+    var label = document.createElement("span");
+    label.className = "guest-block-label";
+    label.textContent = d.guestLabel + " " + (idx + 1);
+    var removeBtn = document.createElement("button");
+    removeBtn.type = "button";
+    removeBtn.className = "guest-remove-btn";
+    removeBtn.textContent = d.guestRemove;
+    removeBtn.setAttribute("data-guest-id", g.id);
+    removeBtn.addEventListener("click", function () {
+      var rid = parseInt(this.getAttribute("data-guest-id"), 10);
+      guestsData = guestsData.filter(function (x) { return x.id !== rid; });
+      guestCount = guestsData.length;
+      renderAllGuests();
+    });
+    header.appendChild(label);
+    header.appendChild(removeBtn);
+    block.appendChild(header);
+
+    // Imię
+    var nameField = makeField("text", prefix + "imie", d.guestImie, d.guestImiePlaceholder, sv.imie, true);
+    block.appendChild(nameField);
+
+    // Kategoria
+    var katField = document.createElement("label");
+    katField.className = "field";
+    var katSpan = document.createElement("span");
+    katSpan.textContent = d.guestKategoria;
+    var katSelect = document.createElement("select");
+    katSelect.name = prefix + "kategoria";
+    katSelect.required = true;
+    [["dorosly", d.katDorosly], ["dziecko", d.katDziecko], ["maluch", d.katMaluch]].forEach(function (opt) {
+      var o = document.createElement("option");
+      o.value = opt[0];
+      o.textContent = opt[1];
+      if (opt[0] === g.kategoria) o.selected = true;
+      katSelect.appendChild(o);
+    });
+    katSelect.setAttribute("data-guest-id", g.id);
+    katSelect.addEventListener("change", function () {
+      var gid = parseInt(this.getAttribute("data-guest-id"), 10);
+      guestsData.forEach(function (x) { if (x.id === gid) x.kategoria = katSelect.value; });
+      renderAllGuests();
+    });
+    katField.appendChild(katSpan);
+    katField.appendChild(katSelect);
+    block.appendChild(katField);
+
+    // Wiek (tylko dla dzieci i maluchów)
+    if (isDziecko) {
+      var maxAge = isMaluch ? 3 : 15;
+      var minAge = isMaluch ? 0 : 4;
+      var wiekField = document.createElement("label");
+      wiekField.className = "field";
+      var wiekSpan = document.createElement("span");
+      wiekSpan.textContent = d.guestWiek;
+      var wiekInput = document.createElement("input");
+      wiekInput.type = "number";
+      wiekInput.name = prefix + "wiek";
+      wiekInput.min = String(minAge);
+      wiekInput.max = String(maxAge);
+      wiekInput.required = true;
+      wiekInput.placeholder = d.guestWiekPlaceholder;
+      wiekInput.value = sv.wiek || "";
+      wiekField.appendChild(wiekSpan);
+      wiekField.appendChild(wiekInput);
+      block.appendChild(wiekField);
+    }
+
+    // Dieta (ukryta dla maluchów 0–3)
+    if (!isMaluch) {
+      var dietField = document.createElement("label");
+      dietField.className = "field";
+      var dietSpan = document.createElement("span");
+      dietSpan.textContent = d.guestDieta;
+      var dietSelect = document.createElement("select");
+      dietSelect.name = prefix + "dieta";
+      dietSelect.required = true;
+      [["", d.dietaWybierz], ["Standardowa", d.dietaStandardowa], ["Wegetariańska", d.dietaWege],
+       ["Wegańska", d.dietaWegan], ["Bezglutenowa", d.dietaGluten], ["Inna", d.dietaInna]].forEach(function (opt) {
+        var o = document.createElement("option");
+        o.value = opt[0];
+        o.textContent = opt[1];
+        if (opt[0] === (sv.dieta || "")) o.selected = true;
+        dietSelect.appendChild(o);
+      });
+      dietField.appendChild(dietSpan);
+      dietField.appendChild(dietSelect);
+      block.appendChild(dietField);
+    }
+
+    // Nocleg (ukryty dla maluchów — śpią z rodzicami)
+    if (!isMaluch) {
+      var noclegFs = document.createElement("fieldset");
+      noclegFs.className = "field";
+      var noclegLegend = document.createElement("legend");
+      noclegLegend.textContent = d.guestNocleg;
+      noclegFs.appendChild(noclegLegend);
+      var noclegRow = document.createElement("div");
+      noclegRow.className = "radio-row";
+      [["Tak", d.noclegTak], ["Nie", d.noclegNie], ["Nie wiem", d.noclegNieWiem]].forEach(function (opt) {
+        var lbl = document.createElement("label");
+        lbl.className = "radio";
+        var inp = document.createElement("input");
+        inp.type = "radio";
+        inp.name = prefix + "nocleg";
+        inp.value = opt[0];
+        inp.required = true;
+        if (opt[0] === sv.nocleg) inp.checked = true;
+        var span = document.createElement("span");
+        span.textContent = " " + opt[1];
+        lbl.appendChild(inp);
+        lbl.appendChild(span);
+        noclegRow.appendChild(lbl);
+      });
+      noclegFs.appendChild(noclegRow);
+      block.appendChild(noclegFs);
+    }
+
+    guestsContainer.appendChild(block);
+  });
 }
 
-companionsSelect.addEventListener("change", renderCompanionFields);
+function makeField(type, name, labelText, placeholder, value, required) {
+  var lbl = document.createElement("label");
+  lbl.className = "field";
+  var span = document.createElement("span");
+  span.textContent = labelText;
+  var input = document.createElement("input");
+  input.type = type;
+  input.name = name;
+  input.placeholder = placeholder || "";
+  input.value = value || "";
+  if (required) input.required = true;
+  lbl.appendChild(span);
+  lbl.appendChild(input);
+  return lbl;
+}
 
+/* Inicjalizacja tłumaczeń */
 applyTranslations();
 
-/* ---------------------------------------------------------------- */
-
-const gate = document.getElementById("gate");
-const site = document.getElementById("site");
-const gateForm = document.getElementById("gate-form");
-const gateError = document.getElementById("gate-error");
+/* ================================================================
+   BRAMKA HASŁA
+   ================================================================ */
+var gate = document.getElementById("gate");
+var site = document.getElementById("site");
+var gateForm = document.getElementById("gate-form");
+var gateError = document.getElementById("gate-error");
 
 function unlockSite(remember) {
   gate.classList.add("hidden");
   site.classList.remove("hidden");
-  if (remember) {
-    localStorage.setItem("wesele_unlocked", "yes");
-  }
+  if (remember) localStorage.setItem("wesele_unlocked", "yes");
 }
 
-// 1) Jeśli to urządzenie już raz podało poprawne hasło, wpuszczamy bez pytania.
-//    (localStorage pamięta to na stałe, nie tylko do zamknięcia karty)
 if (localStorage.getItem("wesele_unlocked") === "yes") {
   unlockSite(false);
-} else {
-  // 2) Jeśli link zawiera ?haslo=... (np. z zeskanowanego kodu QR) i pasuje,
-  //    wpuszczamy automatycznie — gość nic nie musi wpisywać.
-  const urlParams = new URLSearchParams(window.location.search);
-  const haslowUrl = urlParams.get("haslo");
-  if (haslowUrl && haslowUrl.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
-    unlockSite(true);
-    // Usuwamy hasło z paska adresu, żeby nie zostawało widoczne/w historii.
-    urlParams.delete("haslo");
-    const cleanUrl = window.location.pathname + (urlParams.toString() ? "?" + urlParams.toString() : "");
-    window.history.replaceState({}, document.title, cleanUrl);
-  }
 }
+
+// Auto-odblokowanie z parametru ?haslo= (QR)
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var h = params.get("haslo");
+  if (h && h.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
+    unlockSite(true);
+    params.delete("haslo");
+    var clean = window.location.pathname + (params.toString() ? "?" + params.toString() : "");
+    window.history.replaceState({}, document.title, clean);
+  }
+})();
 
 gateForm.addEventListener("submit", function (e) {
   e.preventDefault();
-  const value = document.getElementById("gate-password").value.trim();
+  var value = document.getElementById("gate-password").value.trim();
   if (value.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
     gateError.classList.remove("show");
     unlockSite(true);
@@ -257,43 +399,53 @@ gateForm.addEventListener("submit", function (e) {
   }
 });
 
-/* ---------------------------------------------------------------- */
-
-const rsvpForm = document.getElementById("rsvp-form");
-const rsvpStatus = document.getElementById("rsvp-status");
+/* ================================================================
+   WYSYŁKA FORMULARZA RSVP
+   ================================================================ */
+var rsvpForm = document.getElementById("rsvp-form");
+var rsvpStatus = document.getElementById("rsvp-status");
 
 rsvpForm.addEventListener("submit", function (e) {
   e.preventDefault();
 
   if (GOOGLE_SCRIPT_URL.indexOf("http") !== 0) {
-    rsvpStatus.textContent = TRANSLATIONS[currentLang].statusNotConnected;
+    rsvpStatus.textContent = T[lang].statusNotConnected;
     rsvpStatus.className = "rsvp-status err";
     return;
   }
 
-  const formData = new FormData(rsvpForm);
+  var fd = new FormData(rsvpForm);
 
-  const companionCount = parseInt(companionsSelect.value, 10) || 0;
-  const companionParts = [];
-  for (let i = 1; i <= companionCount; i++) {
-    const cName = formData.get("companion" + i + "_imie") || "";
-    const cDiet = formData.get("companion" + i + "_dieta") || "";
-    companionParts.push(cName + " (" + cDiet + ")");
-  }
+  // Zbieramy dane dodatkowych gości w czytelny format
+  var guestsText = [];
+  guestsData.forEach(function (g, idx) {
+    var prefix = "g" + g.id + "_";
+    var name = fd.get(prefix + "imie") || "";
+    var kat = fd.get(prefix + "kategoria") || "dorosly";
+    var wiek = fd.get(prefix + "wiek") || "";
+    var dieta = fd.get(prefix + "dieta") || "—";
+    var nocleg = fd.get(prefix + "nocleg") || "—";
 
-  const payload = {
-    imie: formData.get("imie"),
-    kosciol: formData.get("kosciol"),
-    wesele: formData.get("wesele"),
-    nocleg: formData.get("nocleg"),
-    towarzyszacy: companionParts.join("; "),
-    dieta: formData.get("dieta"),
-    uwagi: formData.get("uwagi") || ""
+    var katLabel = kat === "dorosly" ? "dorosły" : (kat === "dziecko" ? "dziecko" : "maluch");
+    var parts = name + " – " + katLabel;
+    if (wiek) parts += " (" + wiek + " lat)";
+    if (kat !== "maluch") parts += ", dieta: " + dieta + ", nocleg: " + nocleg;
+    guestsText.push((idx + 1) + ") " + parts);
+  });
+
+  var payload = {
+    imie: document.getElementById("main-imie").value,
+    kosciol: fd.get("kosciol"),
+    wesele: fd.get("wesele"),
+    dieta: document.getElementById("main-dieta").value,
+    nocleg: fd.get("main-nocleg"),
+    goście: guestsText.join("; "),
+    uwagi: document.getElementById("main-uwagi").value
   };
 
-  const submitBtn = rsvpForm.querySelector(".submit-btn");
+  var submitBtn = rsvpForm.querySelector(".submit-btn");
   submitBtn.disabled = true;
-  rsvpStatus.textContent = TRANSLATIONS[currentLang].statusSending;
+  rsvpStatus.textContent = T[lang].statusSending;
   rsvpStatus.className = "rsvp-status";
 
   fetch(GOOGLE_SCRIPT_URL, {
@@ -303,13 +455,16 @@ rsvpForm.addEventListener("submit", function (e) {
     body: JSON.stringify(payload)
   })
     .then(function () {
-      rsvpStatus.textContent = TRANSLATIONS[currentLang].statusOk;
+      rsvpStatus.textContent = T[lang].statusOk;
       rsvpStatus.className = "rsvp-status ok";
       rsvpForm.reset();
+      guestsData = [];
+      guestCount = 0;
+      renderAllGuests();
       submitBtn.disabled = false;
     })
     .catch(function () {
-      rsvpStatus.textContent = TRANSLATIONS[currentLang].statusErr;
+      rsvpStatus.textContent = T[lang].statusErr;
       rsvpStatus.className = "rsvp-status err";
       submitBtn.disabled = false;
     });

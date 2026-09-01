@@ -41,10 +41,11 @@ Od teraz każde zgłoszenie z formularza RSVP będzie lądować jako nowy wiersz
 w Twoim arkuszu Google — na żywo, bez niczego więcej z Twojej strony.
 
 **Jeśli arkusz był już wcześniej podłączony** (np. testowałeś/aś wcześniejszą
-wersję formularza): nagłówki kolumn dopisują się automatycznie tylko przy
-pierwszym zgłoszeniu do pustego arkusza. Jeśli masz już jakieś wiersze,
-dopisz ręcznie w arkuszu nagłówek „Osoby towarzyszące" w kolejnej wolnej
-kolumnie, żeby nowe dane trafiały we właściwe miejsce.
+wersję formularza): zastąp cały kod w Apps Script nową wersją z pliku
+`google-apps-script.gs`, a potem: **Wdróż → Zarządzaj wdrożeniami → edytuj
+istniejące wdrożenie → Nowa wersja → Wdróż.** Najlepiej wyczyść też stare
+wiersze w arkuszu (nowa wersja ma inne kolumny) — nagłówki wygenerują się
+automatycznie przy pierwszym nowym zgłoszeniu.
 
 ## Krok 3 — Ustaw własne hasło do strony
 

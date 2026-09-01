@@ -2,8 +2,9 @@
  * KOD DO WKLEJENIA W GOOGLE APPS SCRIPT (script.google.com)
  * Instrukcja krok po kroku jest w pliku README.md.
  *
- * Ten skrypt odbiera zgłoszenia RSVP ze strony i zapisuje je
- * jako nowy wiersz w arkuszu Google, do którego jest podłączony.
+ * WAŻNE: jeśli masz starszą wersję tego skryptu, ZASTĄP ją tą nową
+ * w całości i kliknij "Wdróż" → "Zarządzaj wdrożeniami" → edytuj
+ * istniejące wdrożenie → "Nowa wersja" → Wdróż.
  */
 
 function doPost(e) {
@@ -17,22 +18,22 @@ function doPost(e) {
       "Imię i nazwisko",
       "Ceremonia w kościele",
       "Przyjęcie weselne",
-      "Nocleg",
-      "Osoby towarzyszące",
       "Dieta",
+      "Nocleg",
+      "Dodatkowi goście",
       "Uwagi"
     ]);
   }
 
   sheet.appendRow([
     new Date(),
-    data.imie,
-    data.kosciol,
-    data.wesele,
-    data.nocleg,
-    data.towarzyszacy,
-    data.dieta,
-    data.uwagi
+    data.imie || "",
+    data.kosciol || "",
+    data.wesele || "",
+    data.dieta || "",
+    data.nocleg || "",
+    data["goście"] || data.goscie || "",
+    data.uwagi || ""
   ]);
 
   return ContentService

@@ -367,17 +367,54 @@ input[type="text"]:focus, select:focus, textarea:focus {
   cursor: pointer;
 }
 .radio input { accent-color: var(--forest); width: 17px; height: 17px; }
-.companion-block {
+.guest-block {
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 1.1rem 1.2rem;
-  gap: 1rem;
+  padding: 1.4rem 1.3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
 }
-.companion-block legend {
-  padding: 0 0.4rem;
-  font-size: 0.85rem;
-  color: var(--wood);
+.main-guest { border-color: transparent; padding: 0; }
+.extra-guest { background: rgba(255,255,255,0.5); }
+.guest-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
+.guest-block-label {
+  font-family: "Fraunces", serif;
+  font-size: 1rem;
+  color: var(--forest-dark);
+  font-weight: 500;
+}
+.guest-remove-btn {
+  background: none;
+  border: 1px solid #c9a89a;
+  border-radius: var(--radius);
+  color: #8b4a36;
+  font-family: inherit;
+  font-size: 0.82rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.guest-remove-btn:hover { background: #f5e6e0; }
+.add-guest-btn {
+  align-self: flex-start;
+  background: none;
+  border: 1px dashed var(--gold);
+  border-radius: var(--radius);
+  color: var(--forest);
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.7rem 1.2rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  width: 100%;
+  text-align: center;
+}
+.add-guest-btn:hover { background: rgba(176,137,72,0.08); }
 .submit-btn {
   margin-top: 0.5rem;
   padding: 0.9rem 1.5rem;
