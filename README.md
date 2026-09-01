@@ -40,6 +40,12 @@ Poniżej masz wszystko krok po kroku — nie trzeba umieć programować.
 Od teraz każde zgłoszenie z formularza RSVP będzie lądować jako nowy wiersz
 w Twoim arkuszu Google — na żywo, bez niczego więcej z Twojej strony.
 
+**Jeśli arkusz był już wcześniej podłączony** (np. testowałeś/aś wcześniejszą
+wersję formularza): nagłówki kolumn dopisują się automatycznie tylko przy
+pierwszym zgłoszeniu do pustego arkusza. Jeśli masz już jakieś wiersze,
+dopisz ręcznie w arkuszu nagłówek „Osoby towarzyszące" w kolejnej wolnej
+kolumnie, żeby nowe dane trafiały we właściwe miejsce.
+
 ## Krok 3 — Ustaw własne hasło do strony
 
 1. Otwórz plik `script.js`.
@@ -54,6 +60,23 @@ w Twoim arkuszu Google — na żywo, bez niczego więcej z Twojej strony.
 które trafią na link — nie jest to prawdziwe zabezpieczenie (każdy, kto
 zajrzy w kod źródłowy strony, może je odczytać). Do zebrania RSVP od
 zaproszonych gości w zupełności wystarczy.
+
+Żeby nie było to uciążliwe dla gości:
+- Raz podane poprawne hasło jest zapamiętywane na stałe w danej przeglądarce
+  (nie tylko do zamknięcia karty) — gość wpisuje je tylko raz.
+- Kod QR (patrz Krok 6 niżej) ma hasło „zaszyte" w linku, więc zeskanowanie
+  go od razu wpuszcza gościa na stronę — w ogóle nie musi nic wpisywać.
+
+## Krok 6 — Kod QR na zaproszenia (opcjonalnie)
+
+1. Najpierw wykonaj Krok 5 (publikacja na GitHub Pages), żeby mieć gotowy adres strony.
+2. Otwórz plik `generator-qr.html` zwykłym dwuklikiem w przeglądarce (to narzędzie
+   działa lokalnie, nie trzeba go wgrywać na GitHub).
+3. Wklej adres swojej opublikowanej strony i hasło z Kroku 3, kliknij **Generuj kod QR**.
+4. Pobierz obrazek i wydrukuj go na zaproszeniach albo dodaj do wiadomości do gości.
+
+Zeskanowanie tego kodu od razu otworzy i odblokuje stronę — gość nie musi nic wpisywać.
+Jeśli ktoś i tak wejdzie na sam adres strony (bez kodu QR), zobaczy ekran z hasłem.
 
 ## Krok 4 — Dodaj swoje zdjęcie i sprawdź teksty
 

@@ -11,17 +11,19 @@
 </head>
 <body>
 
+<button id="lang-toggle" class="lang-toggle" type="button" aria-label="Zmień język / Change language">EN</button>
+
 <!-- BRAMKA HASŁA -->
 <div id="gate" class="gate">
   <div class="gate-card">
     <div class="seal">N&amp;A<span>2027</span></div>
-    <h1 class="gate-title">Wesele Nikodema i Anny</h1>
-    <p class="gate-text">Ta strona jest tylko dla naszych gości. Podajcie hasło, które dostaliście na zaproszeniu.</p>
+    <h1 class="gate-title" data-i18n="gateTitle">Wesele Nikodema i Anny</h1>
+    <p class="gate-text" data-i18n="gateText">Ta strona jest tylko dla naszych gości. Podajcie hasło, które dostaliście na zaproszeniu.</p>
     <form id="gate-form">
-      <input type="password" id="gate-password" placeholder="Hasło" autocomplete="off" required>
-      <button type="submit">Wejdź</button>
+      <input type="password" id="gate-password" data-i18n-placeholder="gatePasswordPlaceholder" placeholder="Hasło" autocomplete="off" required>
+      <button type="submit" data-i18n="gateButton">Wejdź</button>
     </form>
-    <p class="gate-error" id="gate-error">To hasło nie pasuje — spróbujcie jeszcze raz.</p>
+    <p class="gate-error" id="gate-error" data-i18n="gateError">To hasło nie pasuje — spróbujcie jeszcze raz.</p>
   </div>
 </div>
 
@@ -32,9 +34,9 @@
     <img src="images/sala.jpg" alt="Gościniec Szumny, Jaworze" class="hero-img">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="hero-eyebrow">Zapraszamy na nasz ślub</p>
+      <p class="hero-eyebrow" data-i18n="heroEyebrow">Zapraszamy na nasz ślub</p>
       <h1 class="hero-names">Nikodem <span class="amp">&amp;</span> Anna</h1>
-      <p class="hero-date">8 maja 2027 · Chybie &amp; Jaworze</p>
+      <p class="hero-date" data-i18n="heroDate">8 maja 2027 · Chybie &amp; Jaworze</p>
     </div>
   </header>
 
@@ -42,7 +44,7 @@
 
     <section class="section welcome">
       <div class="seal small">N&amp;A<span>2027</span></div>
-      <p class="welcome-text">
+      <p class="welcome-text" data-i18n="welcomeText">
         Kochani, 8 maja 2027 roku powiemy sobie „tak" i chcemy mieć Was wtedy blisko siebie.
         Na tej stronie znajdziecie wszystko, co potrzebne na ten dzień — gdzie i o której się
         spotykamy oraz krótki formularz, w którym dacie nam znać, czy możemy na Was liczyć.
@@ -51,15 +53,15 @@
     </section>
 
     <section class="section timeline">
-      <h2>Plan dnia</h2>
+      <h2 data-i18n="timelineTitle">Plan dnia</h2>
       <div class="timeline-track">
         <div class="timeline-item">
           <span class="timeline-time">13:00</span>
-          <span class="timeline-label">Ceremonia w kościele</span>
+          <span class="timeline-label" data-i18n="timelineChurch">Ceremonia w kościele</span>
         </div>
         <div class="timeline-item">
           <span class="timeline-time">14:30</span>
-          <span class="timeline-label">Przyjęcie weselne</span>
+          <span class="timeline-label" data-i18n="timelineParty">Przyjęcie weselne</span>
         </div>
       </div>
     </section>
@@ -71,10 +73,10 @@
           <img src="images/kosciol.jpg" alt="Kościół Chrystusa Króla w Chybiu">
         </div>
         <div class="place-info">
-          <p class="place-kicker">Godzina 13:00</p>
-          <h3>Kościół Chrystusa Króla</h3>
+          <p class="place-kicker" data-i18n="churchKicker">Godzina 13:00</p>
+          <h3 data-i18n="churchName">Kościół Chrystusa Króla</h3>
           <p class="place-address">ul. Wyzwolenia 2<br>43-520 Chybie</p>
-          <a class="place-link" href="https://www.google.com/maps/search/?api=1&query=Ko%C5%9Bci%C3%B3%C5%82+Chrystusa+Kr%C3%B3la+Wyzwolenia+2+43-520+Chybie" target="_blank" rel="noopener">Otwórz w Mapach Google →</a>
+          <a class="place-link" data-i18n="mapLink" href="https://www.google.com/maps/search/?api=1&query=Ko%C5%9Bci%C3%B3%C5%82+Chrystusa+Kr%C3%B3la+Wyzwolenia+2+43-520+Chybie" target="_blank" rel="noopener">Otwórz w Mapach Google →</a>
           <div class="place-map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d998.2459128556018!2d18.81303852201761!3d49.89520995888453!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716af3622df5585%3A0x9d6a6b65949b2dde!2zS2_Fm2Npw7PFgiBDaHJ5c3R1c2EgS3LDs2xhIHcgQ2h5Yml1!5e1!3m2!1spl!2spl!4v1788257962999!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
@@ -86,10 +88,10 @@
           <img src="images/sala.jpg" alt="Gościniec Szumny, sala weselna w Jaworzu">
         </div>
         <div class="place-info">
-          <p class="place-kicker">Godzina 14:30</p>
-          <h3>Gościniec Szumny</h3>
+          <p class="place-kicker" data-i18n="venueKicker">Godzina 14:30</p>
+          <h3 data-i18n="venueName">Gościniec Szumny</h3>
           <p class="place-address">ul. Zajęcza 51<br>43-384 Jaworze</p>
-          <a class="place-link" href="https://www.google.com/maps/search/?api=1&query=Go%C5%9Bciniec+Szumny+Zaj%C4%99cza+51+43-384+Jaworze" target="_blank" rel="noopener">Otwórz w Mapach Google →</a>
+          <a class="place-link" data-i18n="mapLink" href="https://www.google.com/maps/search/?api=1&query=Go%C5%9Bciniec+Szumny+Zaj%C4%99cza+51+43-384+Jaworze" target="_blank" rel="noopener">Otwórz w Mapach Google →</a>
           <div class="place-map">
             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3176.608780593857!2d18.940214176892205!3d49.78281723520921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4716a082a348d229%3A0xdae72f86dfc9b569!2sGo%C5%9Bciniec%20Szumny%20-%20Wesele%2C%20Sala%20weselna%20Bielsko!5e1!3m2!1spl!2spl!4v1788258003921!5m2!1spl!2spl" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
           </div>
@@ -99,50 +101,70 @@
     </section>
 
     <section class="section rsvp">
-      <h2>Potwierdź obecność</h2>
-      <p class="rsvp-intro">Dajcie nam znać do 1 kwietnia 2027 — to bardzo pomoże nam w organizacji.</p>
+      <h2 data-i18n="rsvpTitle">Potwierdź obecność</h2>
+      <p class="rsvp-intro" data-i18n="rsvpIntro">Dajcie nam znać do 1 kwietnia 2027 — to bardzo pomoże nam w organizacji.</p>
 
       <form id="rsvp-form" class="rsvp-form">
 
         <label class="field">
-          <span>Imię i nazwisko</span>
-          <input type="text" name="imie" required placeholder="np. Dariusz Moroz">
+          <span data-i18n="labelImie">Imię i nazwisko</span>
+          <input type="text" name="imie" required data-i18n-placeholder="placeholderImie" placeholder="np. Dariusz Moroz">
         </label>
 
         <fieldset class="field">
-          <legend>Czy będziesz na ceremonii w kościele (13:00)?</legend>
+          <legend data-i18n="legendKosciol">Czy będziesz na ceremonii w kościele (13:00)?</legend>
           <div class="radio-row">
-            <label class="radio"><input type="radio" name="kosciol" value="Tak" required> Tak, będę</label>
-            <label class="radio"><input type="radio" name="kosciol" value="Nie"> Niestety nie</label>
+            <label class="radio"><input type="radio" name="kosciol" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
+            <label class="radio"><input type="radio" name="kosciol" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
           </div>
         </fieldset>
 
         <fieldset class="field">
-          <legend>Czy będziesz na przyjęciu weselnym (14:30)?</legend>
+          <legend data-i18n="legendWesele">Czy będziesz na przyjęciu weselnym (14:30)?</legend>
           <div class="radio-row">
-            <label class="radio"><input type="radio" name="wesele" value="Tak" required> Tak, będę</label>
-            <label class="radio"><input type="radio" name="wesele" value="Nie"> Niestety nie</label>
+            <label class="radio"><input type="radio" name="wesele" value="Tak" required> <span data-i18n="radioTak">Tak, będę</span></label>
+            <label class="radio"><input type="radio" name="wesele" value="Nie"> <span data-i18n="radioNie">Niestety nie</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="field">
+          <legend data-i18n="legendNocleg">Czy potrzebujecie noclegu?</legend>
+          <div class="radio-row">
+            <label class="radio"><input type="radio" name="nocleg" value="Tak, poproszę" required> <span data-i18n="noclegTak">Tak, poproszę</span></label>
+            <label class="radio"><input type="radio" name="nocleg" value="Nie, mamy własny"> <span data-i18n="noclegNie">Nie, mamy własny</span></label>
+            <label class="radio"><input type="radio" name="nocleg" value="Jeszcze nie wiem"> <span data-i18n="noclegNieWiem">Jeszcze nie wiem</span></label>
           </div>
         </fieldset>
 
         <label class="field">
-          <span>Dieta</span>
+          <span data-i18n="labelTowarzyszacy">Czy ktoś Ci towarzyszy?</span>
+          <select id="liczba-towarzyszacych" name="liczba_towarzyszacych">
+            <option value="0" data-i18n="towarzyszacy0">Nie, przyjdę/przyjadę sam/a</option>
+            <option value="1" data-i18n="towarzyszacy1">Tak, 1 osoba</option>
+            <option value="2" data-i18n="towarzyszacy2">Tak, 2 osoby</option>
+          </select>
+        </label>
+
+        <div id="companions-container"></div>
+
+        <label class="field">
+          <span data-i18n="labelDieta">Dieta</span>
           <select name="dieta" required>
-            <option value="">Wybierz…</option>
-            <option value="Standardowa">Standardowa</option>
-            <option value="Wegetariańska">Wegetariańska</option>
-            <option value="Wegańska">Wegańska</option>
-            <option value="Bezglutenowa">Bezglutenowa</option>
-            <option value="Inna">Inna (napiszcie w uwagach)</option>
+            <option value="" data-i18n="dietaWybierz">Wybierz…</option>
+            <option value="Standardowa" data-i18n="dietaStandardowa">Standardowa</option>
+            <option value="Wegetariańska" data-i18n="dietaWege">Wegetariańska</option>
+            <option value="Wegańska" data-i18n="dietaWegan">Wegańska</option>
+            <option value="Bezglutenowa" data-i18n="dietaGluten">Bezglutenowa</option>
+            <option value="Inna" data-i18n="dietaInna">Inna (napiszcie w uwagach)</option>
           </select>
         </label>
 
         <label class="field">
-          <span>Uwagi <em>(alergie, dziecko, nocleg — cokolwiek chcecie nam przekazać)</em></span>
-          <textarea name="uwagi" rows="3" placeholder="Opcjonalnie"></textarea>
+          <span><span data-i18n="labelUwagi">Uwagi</span> <em data-i18n="labelUwagiEm">(alergie, dziecko — cokolwiek chcecie nam przekazać)</em></span>
+          <textarea name="uwagi" rows="3" data-i18n-placeholder="uwagiPlaceholder" placeholder="Opcjonalnie"></textarea>
         </label>
 
-        <button type="submit" class="submit-btn">Wyślij potwierdzenie</button>
+        <button type="submit" class="submit-btn" data-i18n="submitBtn">Wyślij potwierdzenie</button>
         <p class="rsvp-status" id="rsvp-status"></p>
       </form>
     </section>
@@ -151,12 +173,12 @@
 
   <footer class="footer">
     <div class="seal small">N&amp;A<span>2027</span></div>
-    <p>
+    <p data-i18n="footerText">
       Wasza obecność to dla nas największy prezent. Jeśli jednak chcielibyście nas czymś
       obdarować, zamiast kwiatów najbardziej ucieszy nas los na loterię — kto wie, może to
       właśnie Wy przyniesiecie nam szczęście na nowej drodze. 🍀
     </p>
-    <p class="footer-signature">Do zobaczenia 8 maja 2027 — Nikodem &amp; Anna</p>
+    <p class="footer-signature" data-i18n="footerSignature">Do zobaczenia 8 maja 2027 — Nikodem &amp; Anna</p>
   </footer>
 
 </div>

@@ -59,6 +59,27 @@ h1, h2, h3 {
 }
 .seal.small { width: 64px; height: 64px; font-size: 0.95rem; margin-bottom: 1rem; }
 
+/* ---------- Language toggle ---------- */
+.lang-toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 200;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  background: rgba(255,253,248,0.92);
+  color: var(--forest-dark);
+  font-family: "Work Sans", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: background 0.15s ease;
+}
+.lang-toggle:hover { background: #fff; }
+
 /* ---------- Password gate ---------- */
 .gate {
   position: fixed;
@@ -346,6 +367,17 @@ input[type="text"]:focus, select:focus, textarea:focus {
   cursor: pointer;
 }
 .radio input { accent-color: var(--forest); width: 17px; height: 17px; }
+.companion-block {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.1rem 1.2rem;
+  gap: 1rem;
+}
+.companion-block legend {
+  padding: 0 0.4rem;
+  font-size: 0.85rem;
+  color: var(--wood);
+}
 .submit-btn {
   margin-top: 0.5rem;
   padding: 0.9rem 1.5rem;

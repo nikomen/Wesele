@@ -17,6 +17,8 @@ function doPost(e) {
       "Imię i nazwisko",
       "Ceremonia w kościele",
       "Przyjęcie weselne",
+      "Nocleg",
+      "Osoby towarzyszące",
       "Dieta",
       "Uwagi"
     ]);
@@ -27,6 +29,8 @@ function doPost(e) {
     data.imie,
     data.kosciol,
     data.wesele,
+    data.nocleg,
+    data.towarzyszacy,
     data.dieta,
     data.uwagi
   ]);
