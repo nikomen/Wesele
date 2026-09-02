@@ -438,26 +438,107 @@ input[type="text"]:focus, select:focus, textarea:focus {
 .rsvp-status.ok { color: var(--forest); }
 .rsvp-status.err { color: #a3402f; }
 
+/* ---------- Gifts ---------- */
+.gifts {
+  text-align: center;
+  background: var(--card);
+  border-radius: var(--radius);
+}
+.gifts h2 { margin-bottom: 1.5rem; }
+.gifts-text {
+  font-size: 1.1rem;
+  color: #40352A;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
 /* ---------- Footer ---------- */
 .footer {
   background: var(--forest-dark);
   color: #E7DFC9;
   text-align: center;
-  padding: 4.5rem 1.5rem 3rem;
+  padding: 3rem 1.5rem 2.5rem;
 }
-.footer .seal { border-color: var(--gold); background: transparent; color: #fff; }
+.footer-inner { max-width: 400px; margin: 0 auto; }
+.footer .seal { border-color: var(--gold); background: transparent; color: #fff; margin-bottom: 1.25rem; }
 .footer .seal span { color: var(--gold); }
-.footer p {
-  max-width: 480px;
-  margin: 0 auto;
-  font-size: 1.02rem;
-}
 .footer-signature {
-  margin-top: 1.75rem;
+  font-size: 0.95rem;
+  color: #c4baa6;
+  margin: 0;
+}
+.footer-names {
   font-family: "Fraunces", serif;
   font-style: italic;
+  font-size: 1.4rem;
   color: #fff;
-  font-size: 1.1rem;
+  margin: 0.4rem 0 0;
+}
+
+/* ---------- Confirmation modal ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: rgba(20, 22, 14, 0.55);
+  backdrop-filter: blur(4px);
+  animation: modalFadeIn 0.3s ease;
+}
+.modal-overlay.hidden { display: none; }
+.modal-card {
+  background: var(--card);
+  border-radius: 12px;
+  padding: 2.75rem 2.25rem 2rem;
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 24px 48px rgba(0,0,0,0.25);
+  animation: modalSlideUp 0.35s ease;
+}
+.modal-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: #fff;
+  font-size: 1.8rem;
+  line-height: 64px;
+  margin: 0 auto 1.25rem;
+}
+.modal-card h2 {
+  font-size: 1.6rem;
+  margin-bottom: 0.75rem;
+}
+.modal-card p {
+  font-size: 1rem;
+  color: #40352A;
+  margin: 0 0 1.75rem;
+  line-height: 1.6;
+}
+.modal-btn {
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--forest);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.modal-btn:hover { background: var(--forest-dark); }
+
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---------- Responsive ---------- */

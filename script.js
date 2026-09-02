@@ -6,7 +6,55 @@ const SITE_PASSWORD = "NikodemAnna2027";
 /* ====================================================================
    2) ADRES WEB APP Z GOOGLE APPS SCRIPT
    ==================================================================== */
-const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz_cboFIgVaeFmsCwD7ngCxmGyB67dPxdPT1zSqZbnBM2qIX_Q7Uugvm7a1ABBOOuk/exec";
+const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyDNSH7qvuEym-7TIQ1C26085i7OyRJmSMyRFLaS4kLam_xK_xDfPHoy5jTpN6NFhs/exec";
+
+/* ====================================================================
+   BRAMKA HASŁA — celowo na samym początku, żeby działała nawet
+   gdyby dalszy kod (tłumaczenia, goście) miał jakiś problem.
+   ==================================================================== */
+(function initGate() {
+  var gate = document.getElementById("gate");
+  var site = document.getElementById("site");
+  var gateForm = document.getElementById("gate-form");
+  var gateError = document.getElementById("gate-error");
+
+  function unlockSite(remember) {
+    gate.classList.add("hidden");
+    site.classList.remove("hidden");
+    try { if (remember) localStorage.setItem("wesele_unlocked", "yes"); } catch (e) {}
+  }
+
+  // Formularz — rejestrujemy NATYCHMIAST, zanim cokolwiek innego może się wysypać
+  gateForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var value = document.getElementById("gate-password").value.trim();
+    if (value.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
+      gateError.classList.remove("show");
+      unlockSite(true);
+    } else {
+      gateError.classList.add("show");
+    }
+  });
+
+  // Automatyczne wpuszczanie (localStorage / QR) — w try-catch,
+  // bo file:// lub stare przeglądarki mogą blokować localStorage
+  try {
+    if (localStorage.getItem("wesele_unlocked") === "yes") {
+      unlockSite(false);
+    }
+  } catch (e) {}
+
+  try {
+    var params = new URLSearchParams(window.location.search);
+    var h = params.get("haslo");
+    if (h && h.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
+      unlockSite(true);
+      params.delete("haslo");
+      var clean = window.location.pathname + (params.toString() ? "?" + params.toString() : "");
+      window.history.replaceState({}, document.title, clean);
+    }
+  } catch (e) {}
+})();
 
 /* ====================================================================
    3) TŁUMACZENIA (PL / EN)
@@ -39,40 +87,39 @@ const T = {
     radioTak: "Tak, będę",
     radioNie: "Niestety nie",
     labelDieta: "Dieta",
-    dietaWybierz: "Wybierz…",
+    dietaWybierz: "Wybierz\u2026",
     dietaStandardowa: "Standardowa",
-    dietaWege: "Wegetariańska",
-    dietaWegan: "Wegańska",
-    dietaGluten: "Bezglutenowa",
+    dietaWege: "Wegetaria\u0144ska",
     dietaInna: "Inna (napiszcie w uwagach)",
     legendNocleg: "Nocleg",
-    noclegTak: "Tak, poproszę",
-    noclegNie: "Nie potrzebuję",
-    noclegNieWiem: "Jeszcze nie wiem",
-    addGuestBtn: "+ Dodaj osobę towarzyszącą / dziecko",
+    noclegTak: "Tak, prosz\u0119",
+    noclegNie: "Nie potrzebuj\u0119",
+    addGuestBtn: "+ Dodaj osob\u0119 towarzysz\u0105c\u0105 / dziecko",
     guestLabel: "Osoba",
-    guestRemove: "Usuń",
-    guestImie: "Imię i nazwisko",
+    guestRemove: "Usu\u0144",
+    guestImie: "Imi\u0119 i nazwisko",
     guestImiePlaceholder: "np. Anna Kowalska",
     guestKategoria: "Kategoria",
-    katDorosly: "Dorosły",
-    katDziecko: "Dziecko (4–15 lat)",
-    katMaluch: "Maluch (0–3 lata)",
-    guestWiek: "Wiek dziecka",
-    guestWiekPlaceholder: "np. 6",
+    katDorosly: "Doros\u0142y",
+    katDziecko: "Dziecko (4\u201315 lat)",
+    katMaluch: "Maluch (0\u20133 lata)",
     guestDieta: "Dieta",
     guestNocleg: "Nocleg",
+    giftsTitle: "Zamiast kwiat\u00f3w \ud83c\udf40",
+    giftsText: "Wasza obecno\u015b\u0107 to dla nas najwi\u0119kszy prezent. Je\u015bli jednak chcieliby\u015bcie nas czym\u015b obdarowa\u0107, zamiast kwiat\u00f3w najbardziej ucieszy nas los na loteri\u0119 \u2014 kto wie, mo\u017ce to w\u0142a\u015bnie Wy przyniesiecie nam szcz\u0119\u015bcie na nowej drodze.",
     labelUwagi: "Uwagi",
     labelUwagiEm: "(alergie, specjalne potrzeby — cokolwiek chcecie nam przekazać)",
     uwagiPlaceholder: "Opcjonalnie",
     submitBtn: "Wyślij potwierdzenie",
-    footerText: "Wasza obecność to dla nas największy prezent. Jeśli jednak chcielibyście nas czymś obdarować, zamiast kwiatów najbardziej ucieszy nas los na loterię — kto wie, może to właśnie Wy przyniesiecie nam szczęście na nowej drodze. 🍀",
-    footerSignature: "Do zobaczenia 8 maja 2027 — Nikodem & Anna",
+    footerSignature: "Do zobaczenia 8 maja 2027",
     statusNotConnected: "Formularz nie jest jeszcze podłączony do arkusza — zobacz README.md.",
     statusSending: "Wysyłanie…",
     statusOk: "Dziękujemy! Wasza odpowiedź została zapisana. 🎉",
     statusErr: "Coś poszło nie tak — spróbujcie jeszcze raz lub napiszcie do nas bezpośrednio.",
-    maxGuests: "Można dodać maksymalnie 10 osób."
+    maxGuests: "Można dodać maksymalnie 10 osób.",
+    modalTitle: "Gotowe!",
+    modalText: "Dziękujemy za potwierdzenie \u2014 Wasza odpowiedź została zapisana. Nie możemy się doczekać, żeby świętować razem z Wami!",
+    modalClose: "Zamknij"
   },
   en: {
     gateTitle: "Nikodem & Anna's Wedding",
@@ -101,16 +148,13 @@ const T = {
     radioTak: "Yes, I'll be there",
     radioNie: "Sorry, can't make it",
     labelDieta: "Dietary needs",
-    dietaWybierz: "Choose…",
+    dietaWybierz: "Choose\u2026",
     dietaStandardowa: "Standard",
     dietaWege: "Vegetarian",
-    dietaWegan: "Vegan",
-    dietaGluten: "Gluten-free",
     dietaInna: "Other (tell us in the notes)",
     legendNocleg: "Accommodation",
     noclegTak: "Yes, please",
     noclegNie: "No, I'm sorted",
-    noclegNieWiem: "Not sure yet",
     addGuestBtn: "+ Add a guest / child",
     guestLabel: "Guest",
     guestRemove: "Remove",
@@ -118,23 +162,25 @@ const T = {
     guestImiePlaceholder: "e.g. John Smith",
     guestKategoria: "Category",
     katDorosly: "Adult",
-    katDziecko: "Child (4–15 yrs)",
-    katMaluch: "Toddler (0–3 yrs)",
-    guestWiek: "Child's age",
-    guestWiekPlaceholder: "e.g. 6",
+    katDziecko: "Child (4\u201315 yrs)",
+    katMaluch: "Toddler (0\u20133 yrs)",
     guestDieta: "Dietary needs",
     guestNocleg: "Accommodation",
+    giftsTitle: "Instead of flowers \ud83c\udf40",
+    giftsText: "Your presence is the only gift we need. If you'd still like to give us something, instead of flowers we'd love a lottery ticket \u2014 who knows, maybe you'll bring us luck on this new road.",
     labelUwagi: "Notes",
     labelUwagiEm: "(allergies, special needs — anything else we should know)",
     uwagiPlaceholder: "Optional",
     submitBtn: "Send RSVP",
-    footerText: "Your presence is the only gift we need. If you'd still like to give us something, instead of flowers we'd love a lottery ticket — who knows, maybe you'll bring us luck on this new road. 🍀",
-    footerSignature: "See you on May 8, 2027 — Nikodem & Anna",
+    footerSignature: "See you on May 8, 2027",
     statusNotConnected: "The form isn't connected to the spreadsheet yet — see README.md.",
     statusSending: "Sending…",
     statusOk: "Thank you! Your response has been saved. 🎉",
     statusErr: "Something went wrong — please try again or contact us directly.",
-    maxGuests: "You can add up to 10 people."
+    maxGuests: "You can add up to 10 people.",
+    modalTitle: "All set!",
+    modalText: "Thank you for confirming \u2014 your response has been saved. We can't wait to celebrate with you!",
+    modalClose: "Close"
   }
 };
 
@@ -188,13 +234,11 @@ function renderAllGuests() {
     var prefix = "g" + g.id + "_";
     var nameEl = document.querySelector('[name="' + prefix + 'imie"]');
     var katEl = document.querySelector('[name="' + prefix + 'kategoria"]');
-    var wiekEl = document.querySelector('[name="' + prefix + 'wiek"]');
     var dietEl = document.querySelector('[name="' + prefix + 'dieta"]');
     var noclegRadios = document.querySelectorAll('[name="' + prefix + 'nocleg"]');
     savedValues[g.id] = {
       imie: nameEl ? nameEl.value : "",
       kategoria: katEl ? katEl.value : g.kategoria,
-      wiek: wiekEl ? wiekEl.value : "",
       dieta: dietEl ? dietEl.value : "",
       nocleg: ""
     };
@@ -264,27 +308,6 @@ function renderAllGuests() {
     katField.appendChild(katSelect);
     block.appendChild(katField);
 
-    // Wiek (tylko dla dzieci i maluchów)
-    if (isDziecko) {
-      var maxAge = isMaluch ? 3 : 15;
-      var minAge = isMaluch ? 0 : 4;
-      var wiekField = document.createElement("label");
-      wiekField.className = "field";
-      var wiekSpan = document.createElement("span");
-      wiekSpan.textContent = d.guestWiek;
-      var wiekInput = document.createElement("input");
-      wiekInput.type = "number";
-      wiekInput.name = prefix + "wiek";
-      wiekInput.min = String(minAge);
-      wiekInput.max = String(maxAge);
-      wiekInput.required = true;
-      wiekInput.placeholder = d.guestWiekPlaceholder;
-      wiekInput.value = sv.wiek || "";
-      wiekField.appendChild(wiekSpan);
-      wiekField.appendChild(wiekInput);
-      block.appendChild(wiekField);
-    }
-
     // Dieta (ukryta dla maluchów 0–3)
     if (!isMaluch) {
       var dietField = document.createElement("label");
@@ -294,8 +317,8 @@ function renderAllGuests() {
       var dietSelect = document.createElement("select");
       dietSelect.name = prefix + "dieta";
       dietSelect.required = true;
-      [["", d.dietaWybierz], ["Standardowa", d.dietaStandardowa], ["Wegetariańska", d.dietaWege],
-       ["Wegańska", d.dietaWegan], ["Bezglutenowa", d.dietaGluten], ["Inna", d.dietaInna]].forEach(function (opt) {
+      [["", d.dietaWybierz], ["Standardowa", d.dietaStandardowa], ["Wegetaria\u0144ska", d.dietaWege],
+       ["Inna", d.dietaInna]].forEach(function (opt) {
         var o = document.createElement("option");
         o.value = opt[0];
         o.textContent = opt[1];
@@ -316,7 +339,7 @@ function renderAllGuests() {
       noclegFs.appendChild(noclegLegend);
       var noclegRow = document.createElement("div");
       noclegRow.className = "radio-row";
-      [["Tak", d.noclegTak], ["Nie", d.noclegNie], ["Nie wiem", d.noclegNieWiem]].forEach(function (opt) {
+      [["Tak", d.noclegTak], ["Nie", d.noclegNie]].forEach(function (opt) {
         var lbl = document.createElement("label");
         lbl.className = "radio";
         var inp = document.createElement("input");
@@ -359,47 +382,6 @@ function makeField(type, name, labelText, placeholder, value, required) {
 applyTranslations();
 
 /* ================================================================
-   BRAMKA HASŁA
-   ================================================================ */
-var gate = document.getElementById("gate");
-var site = document.getElementById("site");
-var gateForm = document.getElementById("gate-form");
-var gateError = document.getElementById("gate-error");
-
-function unlockSite(remember) {
-  gate.classList.add("hidden");
-  site.classList.remove("hidden");
-  if (remember) localStorage.setItem("wesele_unlocked", "yes");
-}
-
-if (localStorage.getItem("wesele_unlocked") === "yes") {
-  unlockSite(false);
-}
-
-// Auto-odblokowanie z parametru ?haslo= (QR)
-(function () {
-  var params = new URLSearchParams(window.location.search);
-  var h = params.get("haslo");
-  if (h && h.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
-    unlockSite(true);
-    params.delete("haslo");
-    var clean = window.location.pathname + (params.toString() ? "?" + params.toString() : "");
-    window.history.replaceState({}, document.title, clean);
-  }
-})();
-
-gateForm.addEventListener("submit", function (e) {
-  e.preventDefault();
-  var value = document.getElementById("gate-password").value.trim();
-  if (value.toLowerCase() === SITE_PASSWORD.toLowerCase()) {
-    gateError.classList.remove("show");
-    unlockSite(true);
-  } else {
-    gateError.classList.add("show");
-  }
-});
-
-/* ================================================================
    WYSYŁKA FORMULARZA RSVP
    ================================================================ */
 var rsvpForm = document.getElementById("rsvp-form");
@@ -422,13 +404,11 @@ rsvpForm.addEventListener("submit", function (e) {
     var prefix = "g" + g.id + "_";
     var name = fd.get(prefix + "imie") || "";
     var kat = fd.get(prefix + "kategoria") || "dorosly";
-    var wiek = fd.get(prefix + "wiek") || "";
-    var dieta = fd.get(prefix + "dieta") || "—";
-    var nocleg = fd.get(prefix + "nocleg") || "—";
+    var dieta = fd.get(prefix + "dieta") || "";
+    var nocleg = fd.get(prefix + "nocleg") || "";
 
-    var katLabel = kat === "dorosly" ? "dorosły" : (kat === "dziecko" ? "dziecko" : "maluch");
-    var parts = name + " – " + katLabel;
-    if (wiek) parts += " (" + wiek + " lat)";
+    var katLabel = kat === "dorosly" ? "dorosly" : (kat === "dziecko" ? "dziecko 4-15" : "maluch 0-3");
+    var parts = name + " [" + katLabel + "]";
     if (kat !== "maluch") parts += ", dieta: " + dieta + ", nocleg: " + nocleg;
     guestsText.push((idx + 1) + ") " + parts);
   });
@@ -455,17 +435,41 @@ rsvpForm.addEventListener("submit", function (e) {
     body: JSON.stringify(payload)
   })
     .then(function () {
-      rsvpStatus.textContent = T[lang].statusOk;
-      rsvpStatus.className = "rsvp-status ok";
       rsvpForm.reset();
       guestsData = [];
       guestCount = 0;
       renderAllGuests();
       submitBtn.disabled = false;
+      rsvpStatus.textContent = "";
+      rsvpStatus.className = "rsvp-status";
+      showConfirmModal();
     })
     .catch(function () {
       rsvpStatus.textContent = T[lang].statusErr;
       rsvpStatus.className = "rsvp-status err";
       submitBtn.disabled = false;
     });
+});
+
+/* ================================================================
+   MODAL POTWIERDZENIA
+   ================================================================ */
+var confirmModal = document.getElementById("confirm-modal");
+
+function showConfirmModal() {
+  // Zaktualizuj tekst na aktualny język
+  confirmModal.querySelector("[data-i18n='modalTitle']").textContent = T[lang].modalTitle;
+  confirmModal.querySelector("[data-i18n='modalText']").textContent = T[lang].modalText;
+  confirmModal.querySelector("[data-i18n='modalClose']").textContent = T[lang].modalClose;
+  confirmModal.classList.remove("hidden");
+}
+
+function hideConfirmModal() {
+  confirmModal.classList.add("hidden");
+}
+
+document.getElementById("modal-close").addEventListener("click", hideConfirmModal);
+
+confirmModal.addEventListener("click", function (e) {
+  if (e.target === confirmModal) hideConfirmModal();
 });

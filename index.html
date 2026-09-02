@@ -137,8 +137,6 @@
               <option value="" data-i18n="dietaWybierz">Wybierz…</option>
               <option value="Standardowa" data-i18n="dietaStandardowa">Standardowa</option>
               <option value="Wegetariańska" data-i18n="dietaWege">Wegetariańska</option>
-              <option value="Wegańska" data-i18n="dietaWegan">Wegańska</option>
-              <option value="Bezglutenowa" data-i18n="dietaGluten">Bezglutenowa</option>
               <option value="Inna" data-i18n="dietaInna">Inna (napiszcie w uwagach)</option>
             </select>
           </label>
@@ -148,7 +146,6 @@
             <div class="radio-row">
               <label class="radio"><input type="radio" name="main-nocleg" value="Tak" required> <span data-i18n="noclegTak">Tak, poproszę</span></label>
               <label class="radio"><input type="radio" name="main-nocleg" value="Nie"> <span data-i18n="noclegNie">Nie potrzebuję</span></label>
-              <label class="radio"><input type="radio" name="main-nocleg" value="Nie wiem"> <span data-i18n="noclegNieWiem">Jeszcze nie wiem</span></label>
             </div>
           </fieldset>
         </div>
@@ -168,20 +165,52 @@
       </form>
     </section>
 
+    <section class="section gifts">
+      <h2 data-i18n="giftsTitle">Zamiast kwiatów 🍀</h2>
+      <p class="gifts-text" data-i18n="giftsText">
+        Wasza obecność to dla nas największy prezent. Jeśli jednak chcielibyście nas czymś
+        obdarować, zamiast kwiatów najbardziej ucieszy nas los na loterię — kto wie, może to
+        właśnie Wy przyniesiecie nam szczęście na nowej drodze.
+      </p>
+    </section>
+
   </main>
 
   <footer class="footer">
-    <div class="seal small">N&amp;A<span>2027</span></div>
-    <p data-i18n="footerText">
-      Wasza obecność to dla nas największy prezent. Jeśli jednak chcielibyście nas czymś
-      obdarować, zamiast kwiatów najbardziej ucieszy nas los na loterię — kto wie, może to
-      właśnie Wy przyniesiecie nam szczęście na nowej drodze. 🍀
-    </p>
-    <p class="footer-signature" data-i18n="footerSignature">Do zobaczenia 8 maja 2027 — Nikodem &amp; Anna</p>
+    <div class="footer-inner">
+      <div class="seal small">N&amp;A<span>2027</span></div>
+      <p class="footer-signature" data-i18n="footerSignature">Do zobaczenia 8 maja 2027</p>
+      <p class="footer-names">Nikodem &amp; Anna</p>
+    </div>
   </footer>
 
-</div>
+  <div id="confirm-modal" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-icon">✓</div>
+      <h2 data-i18n="modalTitle">Gotowe!</h2>
+      <p data-i18n="modalText">Dziękujemy za potwierdzenie — Wasza odpowiedź została zapisana. Nie możemy się doczekać, żeby świętować razem z Wami!</p>
+      <button type="button" id="modal-close" class="modal-btn" data-i18n="modalClose">Zamknij</button>
+    </div>
+  </div>
 
+</div>
+<script>
+// Fallback — gdyby script.js nie załadował się
+(function(){
+  var f=document.getElementById("gate-form");
+  if(!f)return;
+  f.addEventListener("submit",function(e){
+    e.preventDefault();
+    var v=document.getElementById("gate-password").value.trim();
+    if(v.toLowerCase()==="nikodemanna2027"){
+      document.getElementById("gate").classList.add("hidden");
+      document.getElementById("site").classList.remove("hidden");
+    }else{
+      document.getElementById("gate-error").classList.add("show");
+    }
+  });
+})();
+</script>
 <script src="script.js"></script>
 </body>
 </html>
